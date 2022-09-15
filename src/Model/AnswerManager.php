@@ -36,4 +36,14 @@ class AnswerManager extends AbstractManager
 
         return $statement->fetchAll();
     }
+
+    public function update($track): bool
+    {
+        $query = "UPDATE " . self::TABLE . " SET `title`=:title WHERE track_id=:id";
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue('id', $track['id'], \PDO::PARAM_INT);
+        $statement->bindValue('title', $track['title'], \PDO::PARAM_STR);
+
+        return $statement->execute();
+    }
 }

@@ -12,10 +12,15 @@
     </div>
     <audio src="/uploads/tracks/{{track.path}}" class="audio mt-2" id="myAudio" controls></audio>
     <div class="container mt-5">
-        <a href="/dashboard" class="btn btn-tertiary col-6 mb-2">Back</a>
-        <a href="/dashboard/update?id={{ track.id }}" class="btn btn-tertiary col-6">Edit</a>
+        <div class="row">
+            <div class="col-12 col-md-6 py-2 d-flex flex-row justify-content-center justify-content-md-end">
+                <a href="/dashboard" class="btn btn-tertiary">Back</a>
+            </div>
+            <div class="col-12 col-md-6 py-2 d-flex flex-row justify-content-center justify-content-md-start">
+                <a href="/dashboard/update?id={{ track.id }}" class="btn btn-tertiary">Edit</a>
+            </div>
+        </div>
     </div>
-
 </div>
 {% endblock %}
 {% block javascript %}

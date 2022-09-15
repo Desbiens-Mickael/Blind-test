@@ -19,6 +19,9 @@ class HomeController extends AbstractController
             $_SESSION['user']->setNickname($_POST['nickname']);
             header('location: /category');
         }
+        if (!file_exists(__DIR__ . "/../../public/uploads/tracks/")) {
+            mkdir(__DIR__ . "/../../public/uploads/tracks/", 0777, true);
+        }
 
         return $this->twig->render('Home/index.html.twig', [
             'errors' => $errors

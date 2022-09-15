@@ -30,15 +30,15 @@
 
 	<div class="rank text-center mt-5">
 		<div class='row'>
-			<div class="col-xs-1 col-sm-6 end">
-				<a class='btn mb-2  btn-tertiary btn-block' href="/quizz/result">All time</a>
+			<div class="col-6 col-md-4">
+				<a class='btn mb-2 mx-auto  btn-tertiary btn-block' href="/quizz/result">All time</a>
 			</div>
-			<div class="col-xs-1 col-sm-6 start">
-				<a class='btn mb-2  btn-tertiary btn-block' href="/quizz/lastSeven">Last 7 days</a>
+			<div class="col-6 col-md-4">
+				<a class='btn mb-2 mx-auto  btn-tertiary btn-block' href="/quizz/lastSeven">Last 7 days</a>
 			</div>
-            <form action="/quizz/result/category" method="post" class="col-xs-1 col-sm-4 start d-flex flex-column form-cat">
-                <button class='btn btn-tertiary btn-block'>Valider</button>
-                <select name="categories" id="categories" class="cat-select">
+            <form action="/quizz/result/category" method="post" class="col-12 col-md-4  d-flex flex-column form-cat mt-3 mt-md-0">
+                <button class='btn btn-tertiary btn-block  mx-auto'>Valider</button>
+                <select name="categories" id="categories" class="cat-select  mx-auto">
                 {% for category in categorises %}
                     <option value="{{category.id}}">{{category.name}}</option>
                 {% endfor %}

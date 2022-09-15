@@ -1,8 +1,22 @@
-# This will prevent generating "Not Found" error in browser
-# Then we will manually do the rest to produce page for user
+# IfModule sert à répondre à Apache s'il est lancé
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . index.php [L]
+  RewriteEngine on
+  # Définissez "protossl" à "s" si nous avons été accédés via https://.  Ceci est utilisé plus tard
+  # si vous activez le dépouillement ou la mise en application de "www.", afin de garantir que
+  # vous ne rebondissez pas entre http et https.
+  RewriteRule ^ - [E=protossl]
+  RewriteCond %{HTTPS} on
+  RewriteRule ^ - [E=protossl:s]
+
+  # Assurez-vous que l'en-tête HTTP d'autorisation est disponible pour PHP,
+  # même lorsqu'il fonctionne en tant que CGI ou FastCGI.
+  RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  # Passer toutes les requêtes qui ne se réfèrent pas directement à des fichiers dans le système de fichiers à
+  # index.php.
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_URI} !=/favicon.ico
+  RewriteRule ^ index.php [L]
+  Options -Indexes
 </IfModule>

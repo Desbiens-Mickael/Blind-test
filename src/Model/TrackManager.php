@@ -7,6 +7,7 @@ use App\Model\AbstractManager;
 class TrackManager extends AbstractManager
 {
     public const TABLE = 'track';
+
     public function selectPathRand(int $id): array|false
     {
         $statement = $this->pdo->prepare("SELECT id, title, path FROM " . static::TABLE .

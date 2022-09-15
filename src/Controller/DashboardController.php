@@ -73,6 +73,7 @@ class DashboardController extends AbstractController
     public function update(int $id)
     {
         $trackManager = new TrackManager();
+        $answerManager = new AnswerManager();
         $track = $trackManager->selectOneById($id);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // clean $_POST data
@@ -85,6 +86,7 @@ class DashboardController extends AbstractController
                 $track['path'] = $fileName;
             }
             $trackManager->update($track);
+            $answerManager->update($track);
             header('Location:/dashboard');
             return null;
         }
